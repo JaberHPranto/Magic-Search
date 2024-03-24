@@ -22,11 +22,11 @@ const SearchPage = async ({ searchParams }: Props) => {
     .where(
       // postgres full text search
       sql`to_tsvector('simple', lower(${productsTable.name} || ' ' || ${
-        productsTable.description
+        productsTable.description // pre-processing - stop words, lexemes, word count
       })) @@ to_tsquery('simple', lower(${query
         .trim()
         .split(" ")
-        .join(" & ")}))` // pg searches `Bomber Jacket` to Bomber & Jacket`
+        .join(" & ")}))` // pg searches `Bomber Jacket` to Bomber & Jacket (pg doesn't take multiple search params without logical operator)`
     )
     .limit(3);
 
