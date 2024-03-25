@@ -84,7 +84,7 @@ const SearchPage = async ({ searchParams }: Props) => {
   return (
     <ul className="py-4 divide-y-4 divide-zinc-100 bg-white shadow-md rounded-b-md">
       {products.slice(0, 3).map((product) => (
-        <Link key={product.id} href={`/product/${product.id}`}>
+        <Link key={product.id} href={`/products/${product.id}`}>
           <li className="py-4 px-8 mx-auto flex space-x-4">
             <div className="relative flex items-center bg-zinc-50 size-40">
               <Image
