@@ -3,11 +3,15 @@ import React, { useRef, useState, useTransition } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Loader2, Search } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchBar = () => {
-  const [query, setQuery] = useState("");
   const [isSearching, startTransition] = useTransition();
+
+  const searchParams = useSearchParams();
+  const defaultQuery = searchParams.get("query") || "";
+
+  const [query, setQuery] = useState(defaultQuery);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
